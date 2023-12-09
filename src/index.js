@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
-
+const cors = require("cors")
 
 const carrito_compras = require("./routes/carrito_compras");
 const productos = require("./routes/productos");
@@ -15,7 +15,7 @@ const path = require("path");
 const app = express();
 const puerto = 5530;
 
-
+app.use(cors());
 // Resto de tu configuración de Express...
 
 app.use(express.json());
