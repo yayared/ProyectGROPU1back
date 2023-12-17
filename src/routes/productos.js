@@ -146,8 +146,6 @@ router.get("/productos/sku/:skuParam", (req, res) => {
 
 
 
-
-
 router.get("/productos/nombre/:nombreParam", (req, res) => {
     const { nombreParam } = req.params;
 

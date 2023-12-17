@@ -5,9 +5,10 @@ const cors = require("cors")
 
 const carrito_compras = require("./routes/carrito_compras");
 const productos = require("./routes/productos");
-const producto_unidad = require("./routes/producto_unidads");
 const ventas = require("./routes/ventas");
 const registro = require("./routes/registro");
+
+
 
 const swaggerUI = require("swagger-ui-express");
 const swaggerJSDoc = require("swagger-jsdoc");
@@ -43,7 +44,6 @@ app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerJSDoc(swaggerConf)))
 app.use("/api", carrito_compras);
 app.use("/api", productos);
 app.use("/api", ventas);
-app.use("/api", producto_unidad);
 app.use("/api", registro);
 
 const connectionString = `mongodb+srv://75472798:75472798@tg-certus.wv15itk.mongodb.net/TGroup?retryWrites=true&w=majority`;
@@ -55,8 +55,11 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
+  
 
 app.listen(puerto, () => {
   
   console.log("Servidor escuchando en el puerto " + puerto);
 });
+
+
