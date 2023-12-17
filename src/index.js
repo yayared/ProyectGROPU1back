@@ -44,10 +44,11 @@ app.use("/api", productos);
 app.use("/api", ventas);
 app.use("/api", producto_unidad);
 
+const connectionString = `mongodb+srv://75472798:75472798@tg-certus.wv15itk.mongodb.net/TGroup?retryWrites=true&w=majority`;
 mongoose
-  .connect(process.env.mongodb)
+  .connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log("Conexion realizada con exito");
+    console.log("Conexión realizada con éxito");
   })
   .catch((error) => {
     console.log(error);
