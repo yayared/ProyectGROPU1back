@@ -146,9 +146,14 @@ router.get("/productos/sku/:skuParam", (req, res) => {
 
 
 
+
+
 router.get("/productos/nombre/:nombreParam", (req, res) => {
     const { nombreParam } = req.params;
+
+    // Selecciona los campos que deseas devolver, incluyendo el _id
     productosSchema.find({ nombre: { $regex: new RegExp(nombreParam, 'i') } })
+
         .then((data) => {
             if (!data || !data.length) {
                 return res.json({ alerta: "Producto no encontrado" });
@@ -159,6 +164,24 @@ router.get("/productos/nombre/:nombreParam", (req, res) => {
             console.error("Error en la búsqueda:", error);
             res.json({ alerta: "Error en la búsqueda" });
         });
+});
+
+
+// Ruta para obtener detalles del producto por ID
+router.get('/productos/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const producto = await productosSchema.findById(id);
+        if (!producto) {
+            return res.json({ alerta: 'Producto no encontrado' });
+        }
+
+        res.json(producto);
+    } catch (error) {
+        console.error('Error al obtener detalles del producto por ID:', error);
+        res.json({ alerta: 'Error al obtener detalles del producto por ID' });
+    }
 });
 
 
